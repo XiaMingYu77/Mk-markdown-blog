@@ -1,10 +1,8 @@
-// eslint-disable-next-line
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import legacy from '@vitejs/plugin-legacy';
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import viteCompression from 'vite-plugin-compression'
-import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import path from 'path'
 
 // https://vitejs.dev/config/
@@ -21,12 +19,12 @@ export default defineConfig({
     viteCompression({
       threshold: 51200, // 对大于 50KB 的文件进行压缩
     }),
-    VueSetupExtend()
   ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '@components': path.resolve(__dirname, './src/components')
+      '@components': path.resolve(__dirname, './src/components'),
+      '@utils': path.resolve(__dirname, './src/utils')
     }
   },
   server: {
@@ -36,7 +34,7 @@ export default defineConfig({
     cors: true, //为开发服务器配置 CORS
     proxy: { //配置代理
       '/api': {
-        target: '',
+        target: 'http://yapi.sankuai.com',
         changeOrigin: true,
       },
       '/mock':{

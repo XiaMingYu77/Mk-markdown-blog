@@ -8,5 +8,12 @@ import 'normalize.css/normalize.css'
 
 const app = createApp(App);
 app.use(Antd)
-  .use(router)
+  .use(router);
 app.mount('#app');
+
+// 异常兜底
+window.addEventListener('unhandledrejection', (event)=>{
+  event.preventDefault();
+  console.log("==== 兜底，有异常未捕获 ====")
+  console.error(event.reason);
+})

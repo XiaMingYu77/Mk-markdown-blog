@@ -1,6 +1,6 @@
 export default [
   {
     path: '/test',
-    component: () => import('./test.vue'),
+    component: () => import('./testDemo.vue'),
   },
 ];

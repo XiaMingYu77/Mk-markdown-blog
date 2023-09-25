@@ -5115,6 +5115,13 @@ qs@6.11.0:
   dependencies:
     side-channel "^1.0.4"
 
+qs@^6.11.2:
+  version "6.11.2"
+  resolved "http://r.npm.sankuai.com/qs/download/qs-6.11.2.tgz#64bea51f12c1f5da1bc01496f48ffcff7c69d7d9"
+  integrity sha1-ZL6lHxLB9dobwBSW9I/8/3xp19k=
+  dependencies:
+    side-channel "^1.0.4"
+
 queue-microtask@^1.2.2:
   version "1.2.3"
   resolved "http://r.npm.sankuai.com/queue-microtask/download/queue-microtask-1.2.3.tgz"
