@@ -1,7 +1,18 @@
-# Vue 3 + Vite
+# Mk-可私有化部署博客
+> 可私有化部署博客前端项目
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## 技术栈
+vue3 + vue-router + vite + ant design vue + axios
 
-## Recommended IDE Setup
+## 说明
++ 组件库文档：
+  https://www.antdv.com/components/overview-cn
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
++ icon文档：
+  https://www.iconfont.cn/manage/index?spm=a313x.icontype_collections.i1.db775f1f3.530d3a81NFWXVX&manage_type=myprojects&projectId=4267242
+
+  ```vue
+  <svg class="icon" aria-hidden="true">
+      <use xlink:href="#icon-xxx"></use>
+  </svg>
+  ```

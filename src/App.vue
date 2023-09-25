@@ -8,13 +8,14 @@
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
+  <svg class="icon" aria-hidden="true">
+    <use xlink:href="#icon-meituan"></use>
+  </svg>
+  {{ a }}
 </template>
 
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
-
-let a = (a)=>{
-}
 
 </script>
 
