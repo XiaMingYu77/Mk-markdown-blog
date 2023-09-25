@@ -4,11 +4,15 @@ import vue from '@vitejs/plugin-vue'
 import legacy from '@vitejs/plugin-legacy';
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import viteCompression from 'vite-plugin-compression'
+import VueSetupExtend from 'vite-plugin-vue-setup-extend'
+import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue(),
+    vue({
+      refTransform: true // 开启ref转换
+    }),
     legacy({
       // 设置目标浏览器，browserslist 配置语法
       targets: ['> 0.2% and not dead'],
@@ -16,6 +20,29 @@ export default defineConfig({
     vueJsx(),
     viteCompression({
       threshold: 51200, // 对大于 50KB 的文件进行压缩
-    })
+    }),
+    VueSetupExtend()
   ],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+      '@components': path.resolve(__dirname, './src/components')
+    }
+  },
+  server: {
+    https: false,
+    port: 8099,
+    open: process.platform === 'darwin', //启动时自动在浏览器中打开
+    cors: true, //为开发服务器配置 CORS
+    proxy: { //配置代理
+      '/api': {
+        target: '',
+        changeOrigin: true,
+      },
+      '/mock':{
+        target: '',
+        changeOrigin: true,
+      }
+    }
+  },
 })
