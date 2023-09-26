@@ -9,8 +9,8 @@
     "preview": "vite preview"
   },
   "lint-staged": {
-    "src/**/*.{js,vue}": [
-      "eslint"
+    "src/**/*.{js,vue,jsx}": [
+      "eslint --cache"
     ]
   },
   "dependencies": {

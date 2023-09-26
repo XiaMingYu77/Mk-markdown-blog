@@ -6,7 +6,7 @@
 import request from '@utils/request.js';
 
 async function test(){
-  let data = await request.get('/api/test');
+  const data = await request.get('/api/test');
   console.log(data);
 }
 </script>
