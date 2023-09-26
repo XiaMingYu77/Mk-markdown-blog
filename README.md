@@ -16,3 +16,6 @@ vue3 + vue-router + vite + ant design vue + axios
       <use xlink:href="#icon-xxx"></use>
   </svg>
   ```
+
++ 代码静态分析：
+  https://sonarcloud.io/project/overview？id=XiaMingYu77_Mk-markdown-blog
