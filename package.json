@@ -4,15 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --mode develop",
     "build": "vite build",
-    "preview": "vite preview",
-    "lint:staged": "lint-staged"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn run lint:staged"
-    }
+    "preview": "vite preview"
   },
   "lint-staged": {
     "src/**/*.{js,vue}": [
