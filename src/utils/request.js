@@ -5,7 +5,7 @@ import { message } from 'ant-design-vue';
 
 const request = axios.create();
 
-request.interceptors.request.use(config => {
+request.interceptors.request.use((config) => {
   // request 封装request
   config.headers['X-Requested-With'] = 'XMLHttpRequest';
   if (config.method === 'post') {
@@ -17,7 +17,7 @@ request.interceptors.request.use(config => {
     }
   }
   return config;
-}, error => {
+}, (error) => {
   // response 错误处理
   message.error({
     content: '请求异常',
@@ -27,7 +27,7 @@ request.interceptors.request.use(config => {
 });
 
 // response 拦截
-request.interceptors.response.use(response => {
+request.interceptors.response.use((response) => {
   // 处理response data
   const res = response.data;
   if (res.code !== undefined && res.code !== 0 && res.code !== 'true') {
@@ -39,7 +39,7 @@ request.interceptors.response.use(response => {
     return Promise.reject(res);
   }
   return res.data !== undefined ? res.data : response;
-}, error => {
+}, (error) => {
   // response 错误处理
   message.error({
     content: '请求异常',

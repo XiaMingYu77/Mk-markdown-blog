@@ -12,7 +12,7 @@ app.use(Antd)
 app.mount('#app');
 
 // 异常兜底
-window.addEventListener('unhandledrejection', (event)=>{
+window.addEventListener('unhandledrejection', (event) => {
   event.preventDefault();
   console.log("==== 兜底，有异常未捕获 ====")
   console.error(event.reason);
