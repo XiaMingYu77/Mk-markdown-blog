@@ -28,7 +28,7 @@ module.exports = {
     requireConfigFile: false,
   },
   plugins: [
-    "vue"
+    "vue",
   ],
   rules: {
     "indent": ["error", 2],
@@ -47,5 +47,12 @@ module.exports = {
     'no-constant-condition': 2, // 禁止在条件中使用常量表达式 if(true) if(1)
     'no-trailing-spaces': 1, // 一行结束后面不要有空格
     'no-var': 2, // 禁用var，用let和const代替
+    'no-async-promise-executor': "error",
+    "no-await-in-loop": "error",
+    "no-promise-executor-return": "error",
+    "require-atomic-updates": "error",
+    "max-nested-callbacks": ["error", 3], // 限制嵌套深度
+    "no-return-await": "warn",
+    "prefer-promise-reject-errors": "error"
   }
 }
