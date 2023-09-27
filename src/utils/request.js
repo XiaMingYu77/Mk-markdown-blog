@@ -23,15 +23,15 @@ request.interceptors.request.use(config => {
     content: '请求异常',
     duration: 4,
   })
-  Promise.reject(error);
+  return Promise.reject(error);
 });
 
 // response 拦截
 request.interceptors.response.use(response => {
   // 处理response data
   const res = response.data;
-  if (res.code !== undefined && res.code !== 0 && res.code !== 'true') {
-    res.msg = res.msg || res.message;
+  if (res.code === undefined && res.code !== 200) {
+    res.msg = res.msg || res.message || res.errmsg;
     message.error({
       content: res.msg,
       duration: 4,
@@ -45,7 +45,7 @@ request.interceptors.response.use(response => {
     content: '请求异常',
     duration: 4,
   })
-  Promise.reject(error);
+  return Promise.reject(error);
 });
 
 export default request;

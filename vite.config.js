@@ -38,7 +38,7 @@ export default defineConfig({
         changeOrigin: true,
       },
       '/mock':{
-        target: '',
+        target: 'https://yapi.sankuai.com',
         changeOrigin: true,
       }
     }

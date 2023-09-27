@@ -5,9 +5,12 @@
 <script setup>
 import request from '@utils/request.js';
 
-function test(){
+async function test(){
   try{
-    request.get('/api/test');
-  }catch(e){}
+    let data = await request.get('/mock/32322/131');
+    console.log(data);
+  }catch(e){
+    console.log(1234);
+  }
 }
 </script>
