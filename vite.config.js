@@ -8,9 +8,7 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue({
-      refTransform: true // 开启ref转换
-    }),
+    vue(),
     legacy({
       // 设置目标浏览器，browserslist 配置语法
       targets: ['> 0.2% and not dead'],

@@ -80,7 +80,6 @@ module.exports = {
     "no-iterator": "error",
     "no-lone-blocks": "error",
     "no-loop-func": "error",
-    "no-mixed-operators": "error",
     "no-multi-assign": "error",
     "no-multi-str": "error",
     "no-nested-ternary": "error",
