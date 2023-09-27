@@ -7,7 +7,7 @@ import request from '@utils/request.js';
 
 async function test(){
   try{
-    let data = await request.get('/mock/32322/131');
+    const data = await request.get('/mock/32322/131');
     console.log(data);
   }catch(e){
     console.log(1234);
