@@ -29,7 +29,11 @@ module.exports = {
   },
   plugins: [
     "vue",
+    "promise"
   ],
+  globals: {
+    "$to": "readonly"
+  },
   rules: {
     "indent": ["error", 2],
     'vue/html-indent': ['error', 2],
@@ -94,6 +98,7 @@ module.exports = {
     "yoda": "error",
     "arrow-parens": ["error", "always"],
     "arrow-spacing": "error",
-
+    'no-async-promise-executor': 'error',
+    "promise/catch-or-return": "error",
   }
 }

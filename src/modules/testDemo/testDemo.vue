@@ -6,11 +6,8 @@
 import request from '@utils/request.js';
 
 async function test(){
-  try{
-    const data = await request.get('/mock/32322/131');
-    console.log(data);
-  }catch(e){
-    console.log(1234);
-  }
+  const [err, data] = await $to(request.get('/mock/32322/131'));
+  console.log(err, data);
 }
+
 </script>

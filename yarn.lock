@@ -2121,6 +2121,11 @@ autoprefixer@^10.2.4:
     picocolors "^1.0.0"
     postcss-value-parser "^4.2.0"
 
+await-to-js@^3.0.0:
+  version "3.0.0"
+  resolved "http://r.npm.sankuai.com/await-to-js/download/await-to-js-3.0.0.tgz#70929994185616f4675a91af6167eb61cc92868f"
+  integrity sha1-cJKZlBhWFvRnWpGvYWfrYcySho8=
+
 axios@^1.5.0:
   version "1.5.0"
   resolved "http://r.npm.sankuai.com/axios/download/axios-1.5.0.tgz"

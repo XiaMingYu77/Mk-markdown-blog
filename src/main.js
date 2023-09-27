@@ -4,13 +4,16 @@ import App from './App.vue'
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/reset.css';
 import router from './router';
-import 'normalize.css/normalize.css'
+import 'normalize.css/normalize.css';
+import to from 'await-to-js';
 
 const app = createApp(App);
 app.use(Antd)
-  .use(router);
+  .use(router)
 app.mount('#app');
 
+// let [err, data] = await $to(Promise);
+window.$to = to;
 // 异常兜底
 window.addEventListener('unhandledrejection', (event) => {
   event.preventDefault();
