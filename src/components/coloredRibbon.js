@@ -175,7 +175,6 @@ function build() {
         window.addEventListener("resize", this._onResize);
         window.addEventListener("scroll", this._onScroll);
         // 这里设置添加的位置
-        console.log(builder.body_);
         builder.body_.appendChild(this._canvas);
       } catch (e) {
         console.warn("Canvas Context Error: " + e.toString());

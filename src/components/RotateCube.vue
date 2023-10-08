@@ -49,8 +49,8 @@
       position: absolute;
       width: 100px;
       height: 100px;
-      background: #4F759A;
-      border: 2.5px solid #fff;
+      background: #6588aa;
+      border: 6px solid #fff;
     }
 
     .top{
@@ -84,8 +84,8 @@
       position: absolute;
       width: 200px;
       height: 200px;
-      background: rgba(229, 223, 237, 0.35);
-      border: 2.5px solid #ffffffb2;
+      background: #6588aa2d;
+      border: 4px solid #ffffff84;
     }
     .top {
       transform: rotateX(90deg) translateZ(100px);
