@@ -41,7 +41,7 @@
   .cube-inner {
     transform-style: preserve-3d;
     transform: rotateX(@rotate-x-inside) rotateY(@rotate-y);
-    animation: fastspin 6s ease-in-out infinite 0.5s;
+    animation: fastspin 6s ease-in-out infinite;
 
     li {
       left: 0; top: 0; right: 0; bottom: 0;
@@ -76,7 +76,7 @@
   .cube{
     transform-style: preserve-3d;
     transform: rotateX(@rotate-x) rotateY(@rotate-y);
-    animation: slowspin 6s ease-in-out infinite 0.5s;
+    animation: slowspin 6s ease-in-out infinite;
 
     li{
       left: 0; top: 0; right: 0; bottom: 0;
