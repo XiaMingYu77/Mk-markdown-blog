@@ -6,10 +6,12 @@ import 'ant-design-vue/dist/reset.css';
 import router from './router';
 import 'normalize.css/normalize.css';
 import to from 'await-to-js';
+import store from './store/vuexStore.js'
 
 const app = createApp(App);
 app.use(Antd)
   .use(router)
+  .use(store)
 app.mount('#app');
 
 // let [err, data] = await $to(Promise);

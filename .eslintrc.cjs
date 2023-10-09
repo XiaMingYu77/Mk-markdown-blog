@@ -32,7 +32,7 @@ module.exports = {
     "promise"
   ],
   globals: {
-    "$to": "readonly"
+    "$to": "readonly",
   },
   rules: {
     "indent": ["error", 2],

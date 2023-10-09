@@ -1,0 +1,225 @@
+<template>
+  <article class="menu">
+    <div class="main-icon menu-item">
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-caidan"></use>
+      </svg>
+    </div>
+    <div class="menu-horizontal">
+      <div
+        v-for="(item, index) in menuHorizontalItemsCmp"
+        :key="item.key"
+        class="menu-item item-horizontal"
+        :style="{
+          'background-color': item.color,
+          'z-index': 50-index,
+          'margin-right': `-${60}px`,
+        }"
+        @click="item.clicked">
+        <a-tooltip :color="item.color">
+          <template #title>
+            {{ item.hint }}
+          </template>
+          <svg class="icon" aria-hidden="true">
+            <use :xlink:href="item.icon"></use>
+          </svg>
+        </a-tooltip>
+      </div>
+    </div>
+    <div class="menu-vertical">
+      <div v-for="(item, index) in menuVerticalItemsCmp" :key="item.key"
+           class="menu-item item-vertical"
+           :style="{
+             'background-color': item.color,
+             'z-index': 50-index,
+             'margin-top': `-${60}px`,
+           }"
+           @click="item.clicked">
+        <a-tooltip :color="item.color" placement="left">
+          <template #title>
+            {{ item.hint }}
+          </template>
+          <svg class="icon" aria-hidden="true">
+            <use :xlink:href="item.icon"></use>
+          </svg>
+        </a-tooltip>
+      </div>
+    </div>
+  </article>
+</template>
+
+<style lang="less">
+.menu{
+  position: fixed;
+  right: 50px;
+  top: 30px;
+  margin: auto;
+  z-index: 100;
+  .main-icon{
+    position: absolute;
+    background-color: #E0C068;
+    z-index: 100;
+    right: 0;
+    top: 0;
+    box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  .menu-item{
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all ease-out 250ms;
+  }
+  .menu-item:hover{
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
+    transform: translate(3px, 2px);
+  }
+  .icon{
+    font-size: 37px;
+  }
+
+  .menu-horizontal{
+    display: flex;
+    flex-direction: row-reverse;
+    position: absolute;
+    top: 0;
+    right: 60px;
+  }
+  .menu-vertical{
+    position: absolute;
+    right: 0;
+    top: 60px;
+  }
+}
+.menu:hover{
+  .menu-item{
+    box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  .main-icon{
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
+    transform: translate(3px, 2px);
+  }
+  .item-horizontal{
+    margin-right: 15px !important;
+  }
+  .item-vertical{
+    margin-top: 15px !important;
+  }
+}
+</style>
+
+<script setup>
+import { computed, ref, watch } from 'vue';
+import {useStore} from 'vuex';
+import {useRouter} from 'vue-router'
+const store = useStore();
+const router = useRouter();
+
+const MENU_ITEM_STATE = {
+  HIDE: 0,
+  SHOW: 1,
+}
+
+const menuHorizontalItems = ref([
+  {
+    name: 'back',
+    key: 'back',
+    hint: '返回',
+    color: '#C89838',
+    icon: '#icon-rollback',
+    show:  MENU_ITEM_STATE.SHOW,
+    clicked: () => {
+
+    }
+  },
+  {
+    name: 'home',
+    key: 'home',
+    hint: '返回主页',
+    color: '#A8A8A8',
+    icon: '#icon-home',
+    show:  MENU_ITEM_STATE.SHOW,
+    clicked: () => {
+
+    }
+  },
+]);
+const menuVerticalItems = ref([
+  {
+    name: 'personalHomePage',
+    key: 'personalHomePage',
+    hint: '个人主页/登陆',
+    color: '#6587AA',
+    icon: '#icon-denglu',
+    show: MENU_ITEM_STATE.SHOW,
+    clicked: () => {
+      if(store.state.user.isLogin){
+        alert('个人主页');
+      }else{
+        router.push({path: '/login'});
+      }
+    }
+  },
+  {
+    name: 'write',
+    key: 'write',
+    hint: '写博客',
+    color: '#3E644F',
+    icon: '#icon-bijijilu',
+    show:  MENU_ITEM_STATE.SHOW,
+    clicked: () => {
+
+    }
+  },
+  {
+    name: 'favorite',
+    key: 'favorite',
+    hint: '收藏夹',
+    color: '#C89838',
+    icon: '#icon-shoucangjia',
+    show:  MENU_ITEM_STATE.SHOW,
+    clicked: () => {
+
+    }
+  },
+  {
+    name: 'history',
+    key: 'history',
+    hint: '历史记录',
+    color: '#AEA6BB',
+    icon: '#icon-lishijilu',
+    show:  MENU_ITEM_STATE.SHOW,
+    clicked: () => {
+
+    }
+  },
+  {
+    name: 'manage',
+    key: 'manage',
+    hint: '管理',
+    color: '#A8A8A8',
+    icon: '#icon-guanliyuan',
+    show: store.state.user.isManager ? MENU_ITEM_STATE.SHOW : MENU_ITEM_STATE.HIDE,
+    clicked: () => {
+
+    }
+  }
+]);
+const menuHorizontalItemsCmp = computed(() => menuHorizontalItems.value.filter((item) => {
+  return item.show === MENU_ITEM_STATE.SHOW;
+}));
+const menuVerticalItemsCmp = computed(() => menuVerticalItems.value.filter((item) => {
+  return item.show === MENU_ITEM_STATE.SHOW;
+}));
+
+watch(
+  () => store.state.user.isManager,
+  (isManager) => {
+    const manageItem = menuVerticalItems.value.find((item) => item.name === 'manage');
+    manageItem.show = isManager ? MENU_ITEM_STATE.SHOW : MENU_ITEM_STATE.HIDE;
+  }
+);
+
+</script>
