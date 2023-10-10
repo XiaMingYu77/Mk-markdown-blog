@@ -47,7 +47,7 @@ function handleAnimationEnd(){
 
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .FSA-area{
   position: fixed;
   left: 0;

@@ -21,6 +21,7 @@
     "await-to-js": "^3.0.0",
     "axios": "^1.5.0",
     "bignumber.js": "^9.1.1",
+    "crypto-js": "^4.1.1",
     "lodash": "^4.17.21",
     "normalize.css": "^8.0.1",
     "qs": "^6.11.2",

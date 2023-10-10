@@ -6,7 +6,8 @@
       </svg>
     </div>
     <div class="menu-horizontal">
-      <div
+      <a-button
+        shape="circle"
         v-for="(item, index) in menuHorizontalItemsCmp"
         :key="item.key"
         class="menu-item item-horizontal"
@@ -24,17 +25,19 @@
             <use :xlink:href="item.icon"></use>
           </svg>
         </a-tooltip>
-      </div>
+      </a-button>
     </div>
     <div class="menu-vertical">
-      <div v-for="(item, index) in menuVerticalItemsCmp" :key="item.key"
-           class="menu-item item-vertical"
-           :style="{
-             'background-color': item.color,
-             'z-index': 50-index,
-             'margin-top': `-${60}px`,
-           }"
-           @click="item.clicked">
+      <a-button
+        shape="circle"
+        v-for="(item, index) in menuVerticalItemsCmp" :key="item.key"
+        class="menu-item item-vertical"
+        :style="{
+          'background-color': item.color,
+          'z-index': 50-index,
+          'margin-top': `-${60}px`,
+        }"
+        @click="item.clicked">
         <a-tooltip :color="item.color" placement="left">
           <template #title>
             {{ item.hint }}
@@ -43,12 +46,12 @@
             <use :xlink:href="item.icon"></use>
           </svg>
         </a-tooltip>
-      </div>
+      </a-button>
     </div>
   </article>
 </template>
 
-<style lang="less">
+<style lang="less" scoped>
 .menu{
   position: fixed;
   right: 50px;
@@ -57,6 +60,7 @@
   z-index: 100;
   .main-icon{
     position: absolute;
+    border-radius: 50%;
     background-color: #E0C068;
     z-index: 100;
     right: 0;
@@ -64,7 +68,6 @@
     box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.3);
   }
   .menu-item{
-    border-radius: 50%;
     height: 60px;
     width: 60px;
     display: flex;

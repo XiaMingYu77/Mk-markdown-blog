@@ -1,7 +1,9 @@
 <template>
-  <router-view />
-  <FSA v-if="showFsa" @animationEnd="closeFsa"></FSA>
-  <Menu></Menu>
+  <div>
+    <router-view />
+    <FSA v-if="showFsa" @animationEnd="closeFsa"></FSA>
+    <Menu></Menu>
+  </div>
 </template>
 
 <script setup>
@@ -19,6 +21,3 @@ function closeFsa(){
 }
 
 </script>
-
-<style lang="less">
-</style>

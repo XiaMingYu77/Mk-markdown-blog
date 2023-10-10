@@ -21,7 +21,7 @@
   </article>
 </template>
 
-<style lang="less">
+<style lang="less" scoped>
 @rotate-x: -35deg;
 @rotate-x-inside: -35deg;
 @rotate-y: 45deg;

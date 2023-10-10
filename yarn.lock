@@ -2662,6 +2662,11 @@ cross-spawn@^7.0.2, cross-spawn@^7.0.3:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
+crypto-js@^4.1.1:
+  version "4.1.1"
+  resolved "http://r.npm.sankuai.com/crypto-js/download/crypto-js-4.1.1.tgz#9e485bcf03521041bd85844786b83fb7619736cf"
+  integrity sha1-nkhbzwNSEEG9hYRHhrg/t2GXNs8=
+
 css-declaration-sorter@^6.3.1:
   version "6.4.0"
   resolved "http://r.npm.sankuai.com/css-declaration-sorter/download/css-declaration-sorter-6.4.0.tgz"
