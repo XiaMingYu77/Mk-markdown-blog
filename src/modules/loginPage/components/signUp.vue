@@ -2,6 +2,7 @@
   <div class="signUp">
     <a-form
       ref="formRef"
+      name="signUp"
       :labelCol="{
         span: 4,
         offset: 3
@@ -40,7 +41,7 @@
       <a-form-item label=" ">
         <a-switch v-model:checked="modifyForm.remember" />
         <a-popover>
-          <span style="margin-left: 10px; color: #e54548;">记住我</span>
+          <span style="margin-left: 10px;">记住我</span>
           <svg class="icon" aria-hidden="true" style="margin-left: 5px;">
             <use xlink:href="#icon-wenhao"></use>
           </svg>
@@ -68,11 +69,8 @@
 import { ref } from 'vue';
 import { message } from 'ant-design-vue';
 import { cloneDeep } from 'lodash'
-import CryptoJS from 'crypto-js';
-import request from '@utils/request.js';
-import User, {LOG_STATE} from '@utils/user.js';
-import {useStore} from 'vuex';
-const store = useStore();
+import User from '@utils/user.js';
+
 const formRef = ref();
 const modifyForm = ref({
   username: '',
@@ -123,23 +121,12 @@ function onSignUp(){
   })
 }
 
-async function handleSignUp(){
-  const data = cloneDeep(modifyForm.value);
-  // eslint-disable-next-line
-  data.password = CryptoJS.SHA256(data.password).toString();
-  try{
-    loading.value = true;
-    const ans = await request.post('', {
-      username: data.username,
-      password: data.password,
-      remember: data.remember
-    });
-    const user = new User(ans.username, ans.name, ans.isManager, LOG_STATE.LOGIN);
-    store.commit('changeUserState', {user});
-    loading.value = false;
-  } catch(e){
-    console.error(e);
-  }
+function handleSignUp(){
+  const params = cloneDeep(modifyForm.value);
+  const user = new User();
+  loading.value = true;
+  user.signUp(params.username, params.password, params.remember);
+  loading.value = false;
 }
 </script>
 

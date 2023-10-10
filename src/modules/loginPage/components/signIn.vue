@@ -2,6 +2,7 @@
   <div class="signIn">
     <a-form
       ref="formRef"
+      name="signIn"
       :labelCol="{
         span: 2,
         offset: 2
@@ -35,7 +36,7 @@
       <a-form-item label=" ">
         <a-switch v-model:checked="modifyForm.remember" />
         <a-popover>
-          <span style="margin-left: 10px; color: #e54548;">记住我</span>
+          <span style="margin-left: 10px;">记住我</span>
           <svg class="icon" aria-hidden="true" style="margin-left: 5px;">
             <use xlink:href="#icon-wenhao"></use>
           </svg>
@@ -45,8 +46,10 @@
         </a-popover>
       </a-form-item>
       <a-form-item label=" " class="btn-area">
-        <a-button class="btn" @click="onLogin" :loading="loading">登录</a-button>
-        <a-button @click="goSignIn" class="btn" :loading="loading">去注册</a-button>
+        <a-space :size="50">
+          <a-button class="btn" @click="onLogin" :loading="loading">登录</a-button>
+          <a-button @click="goSignIn" class="btn" :loading="loading">去注册</a-button>
+        </a-space>
       </a-form-item>
     </a-form>
   </div>
@@ -56,11 +59,8 @@
 import { ref } from 'vue';
 import { message } from 'ant-design-vue';
 import { cloneDeep } from 'lodash'
-import CryptoJS from 'crypto-js';
-import request from '@utils/request.js';
-import User, {LOG_STATE} from '@utils/user.js';
-import {useStore} from 'vuex';
-const store = useStore();
+import User from '@utils/user.js';
+
 const emit = defineEmits(['goSignIn']);
 
 function goSignIn(){
@@ -99,19 +99,12 @@ function onLogin(){
   })
 }
 
-async function handleLogin(){
+function handleLogin(){
   const params = cloneDeep(modifyForm.value);
-  // eslint-disable-next-line
-  params.password = CryptoJS.SHA256(params.password).toString();
-  try{
-    loading.value = true;
-    const ans = await request.post('', params);
-    const user = new User(ans.username, ans.name, ans.isManager, LOG_STATE.LOGIN);
-    store.commit('changeUserState', {user});
-    loading.value = false;
-  } catch(e){
-    console.error(e);
-  }
+  const user = new User();
+  loading.value = true;
+  user.signIn(params.username, params.password);
+  loading.value = false;
 }
 </script>
 
@@ -122,11 +115,10 @@ async function handleLogin(){
     margin-top: 50px;
     .input{
       box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.209);
-      background-color: #b2a8c122;
+      background-color: #e9e3f232;
     }
     .btn-area{
       .btn{
-        margin-right: 50px;
         background-color: #aea6bb4b;
       }
     }

@@ -14,7 +14,8 @@
         :style="{
           'background-color': item.color,
           'z-index': 50-index,
-          'margin-right': `-${60}px`,
+          'margin-right': '15px',
+          transform: `translateX(${75*(index+1)}px)`,
         }"
         @click="item.clicked">
         <a-tooltip :color="item.color">
@@ -35,7 +36,8 @@
         :style="{
           'background-color': item.color,
           'z-index': 50-index,
-          'margin-top': `-${60}px`,
+          'margin-Top': '15px',
+          transform: `translateY(${-75*(index+1)}px)`,
         }"
         @click="item.clicked">
         <a-tooltip :color="item.color" placement="left">
@@ -75,10 +77,6 @@
     align-items: center;
     transition: all ease-out 250ms;
   }
-  .menu-item:hover{
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
-    transform: translate(3px, 2px);
-  }
   .icon{
     font-size: 37px;
   }
@@ -105,10 +103,15 @@
     transform: translate(3px, 2px);
   }
   .item-horizontal{
-    margin-right: 15px !important;
+    transform: translateX(0) !important;
   }
   .item-vertical{
-    margin-top: 15px !important;
+    transform: translateY(0) !important;
+  }
+
+  .menu-item:hover{
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
+    transform: translate(3px, 2px) !important;
   }
 }
 </style>
@@ -116,7 +119,7 @@
 <script setup>
 import { computed, ref, watch } from 'vue';
 import {useStore} from 'vuex';
-import {useRouter} from 'vue-router'
+import {useRouter} from 'vue-router';
 const store = useStore();
 const router = useRouter();
 
@@ -199,6 +202,18 @@ const menuVerticalItems = ref([
     }
   },
   {
+    name: 'signOut',
+    key: 'signOut',
+    hint: '退出登录',
+    color: '#Ab5A1B',
+    icon: '#icon-tuichu',
+    show:  store.state.user.isLogin ? MENU_ITEM_STATE.SHOW : MENU_ITEM_STATE.HIDE,
+    clicked: () => {
+      const user = store.state.user;
+      user.signOut();
+    }
+  },
+  {
     name: 'manage',
     key: 'manage',
     hint: '管理',
@@ -224,5 +239,12 @@ watch(
     manageItem.show = isManager ? MENU_ITEM_STATE.SHOW : MENU_ITEM_STATE.HIDE;
   }
 );
+watch(
+  () => store.state.user.isLogin,
+  (isLogin) => {
+    const signOutItem = menuVerticalItems.value.find((item) => item.name === 'signOut');
+    signOutItem.show = isLogin ? MENU_ITEM_STATE.SHOW : MENU_ITEM_STATE.HIDE;
+  }
+)
 
 </script>
