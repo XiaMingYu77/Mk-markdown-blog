@@ -3,17 +3,19 @@ import axios from 'axios';
 import qs from 'qs';
 import { message } from 'ant-design-vue';
 
+axios.defaults.withCredentials = true;
+
 const request = axios.create();
 
 request.interceptors.request.use((config) => {
   // request 封装request
   config.headers['X-Requested-With'] = 'XMLHttpRequest';
   if (config.method === 'post') {
-    if (config.contentType === 'json') {
-      config.headers['content-type'] = 'application/json';
-    } else {
+    if (config.contentType === 'application/x-www-form-urlencoded') {
       config.headers['content-type'] = 'application/x-www-form-urlencoded';
       config.data = qs.stringify(config.data);
+    } else {
+      config.headers['content-type'] = 'application/json';
     }
   }
   return config;
@@ -30,7 +32,7 @@ request.interceptors.request.use((config) => {
 request.interceptors.response.use((response) => {
   // 处理response data
   const res = response.data;
-  if (res.code === undefined && res.code !== 200) {
+  if (res.code === undefined || res.code !== 200) {
     res.msg = res.msg || res.message || res.errmsg;
     message.error({
       content: res.msg,

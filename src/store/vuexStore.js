@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import User from '@utils/user.js'
+import User from '@utils/user/index.js'
 
 export default createStore({
   state:{ // 存放数据，使用响应式包装

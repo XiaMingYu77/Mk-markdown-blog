@@ -14,8 +14,7 @@
         :style="{
           'background-color': item.color,
           'z-index': 50-index,
-          'margin-right': '15px',
-          transform: `translateX(${75*(index+1)}px)`,
+          'margin-right': '-60px',
         }"
         @click="item.clicked">
         <a-tooltip :color="item.color">
@@ -36,8 +35,7 @@
         :style="{
           'background-color': item.color,
           'z-index': 50-index,
-          'margin-Top': '15px',
-          transform: `translateY(${-75*(index+1)}px)`,
+          'margin-Top': '-60px',
         }"
         @click="item.clicked">
         <a-tooltip :color="item.color" placement="left">
@@ -103,10 +101,10 @@
     transform: translate(3px, 2px);
   }
   .item-horizontal{
-    transform: translateX(0) !important;
+    margin-right: 15px !important;
   }
   .item-vertical{
-    transform: translateY(0) !important;
+    margin-top: 15px !important;
   }
 
   .menu-item:hover{
@@ -120,6 +118,7 @@
 import { computed, ref, watch } from 'vue';
 import {useStore} from 'vuex';
 import {useRouter} from 'vue-router';
+
 const store = useStore();
 const router = useRouter();
 

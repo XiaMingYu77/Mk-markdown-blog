@@ -59,7 +59,7 @@
 import { ref } from 'vue';
 import { message } from 'ant-design-vue';
 import { cloneDeep } from 'lodash'
-import User from '@utils/user.js';
+import User from '@utils/user/index.js';
 
 const emit = defineEmits(['goSignIn']);
 
@@ -103,7 +103,7 @@ function handleLogin(){
   const params = cloneDeep(modifyForm.value);
   const user = new User();
   loading.value = true;
-  user.signIn(params.username, params.password);
+  user.signIn(params.username, params.password, params.remember);
   loading.value = false;
 }
 </script>

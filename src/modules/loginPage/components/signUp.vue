@@ -20,13 +20,13 @@
       <a-form-item label="账号" name="username">
         <a-input
           v-model:value="modifyForm.username"
-          placeholder="账号：6～15位"
+          placeholder="账号：6～15位非中文字符"
         />
       </a-form-item>
       <a-form-item label="密码" name="password">
         <a-input-password
           v-model:value="modifyForm.password"
-          placeholder="密码：6～15位"
+          placeholder="密码：6～15位非中文字符"
         />
       </a-form-item>
       <a-form-item
@@ -69,7 +69,7 @@
 import { ref } from 'vue';
 import { message } from 'ant-design-vue';
 import { cloneDeep } from 'lodash'
-import User from '@utils/user.js';
+import User from '@utils/user/index.js';
 
 const formRef = ref();
 const modifyForm = ref({
@@ -100,9 +100,9 @@ const rules = {
   rePassword: [
     {
       required: true,
-      validator: (rule, value, callback) => {
-        if(value === modifyForm.value.password) {callback();}
-        else {callback("两次密码输入不一致");}
+      validator: (rule, value) => {
+        if(value === modifyForm.value.password) {return Promise.resolve()}
+        else {return Promise.reject(new Error("两次密码输入不一致"))}
       },
       trigger: 'change',
     }
@@ -121,11 +121,11 @@ function onSignUp(){
   })
 }
 
-function handleSignUp(){
+async function handleSignUp(){
   const params = cloneDeep(modifyForm.value);
   const user = new User();
   loading.value = true;
-  user.signUp(params.username, params.password, params.remember);
+  await user.signUp(params.username, params.password, params.remember);
   loading.value = false;
 }
 </script>

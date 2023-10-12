@@ -32,7 +32,7 @@ export default defineConfig({
     cors: true, //为开发服务器配置 CORS
     proxy: { //配置代理
       '/api': {
-        target: 'https://yapi.sankuai.com',
+        target: 'http://localhost:8211',
         changeOrigin: true,
       },
       '/mock':{

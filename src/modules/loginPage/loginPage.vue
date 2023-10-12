@@ -19,10 +19,14 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watchEffect } from 'vue';
+import {useStore} from 'vuex';
+import { useRouter } from 'vue-router';
 import createRibbons from '@components/coloredRibbon.js';
 import SignIn from './components/signIn.vue'
 import SignUp from './components/signUp.vue';
+const store = useStore();
+const router = useRouter();
 const login = ref();
 const showSignUp = ref(false);
 
@@ -38,6 +42,12 @@ onMounted(() => {
 function goSignIn(){
   showSignUp.value = true;
 }
+
+// 监听登录状态，自动返回
+watchEffect(() => {
+  const userIsLogIn = store.state.user.isLogin;
+  if(userIsLogIn) {router.back();}
+});
 </script>
 
 <style lang="less" scoped>
